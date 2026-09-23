@@ -1,4 +1,4 @@
-# Ironlog — Workout Tracker
+# Strive — Workout Tracker
 
 A full-stack workout tracking app:
 - **Backend:** Java 17 + Spring Boot (REST API)
