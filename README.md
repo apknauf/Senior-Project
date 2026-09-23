@@ -31,11 +31,9 @@ Edit `src/main/resources/application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/workout_db?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-spring.datasource.username=root
-spring.datasource.password=yourpassword
+spring.datasource.username=apknauf
+spring.datasource.password=ol3MissFall26
 ```
-
-Change the username/password to match your MySQL setup.
 
 ## 3. Run the app
 
