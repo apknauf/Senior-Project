@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ironlog — Workout Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ===== AUTH VIEW ===== -->
+  <section id="view-auth" class="view">
+    <div class="auth-wrap">
+      <div class="brand">
+        <span class="brand-mark">IRONLOG</span>
+        <span class="brand-tag">Log it. Lift more next time.</span>
+      </div>
+
+      <div class="auth-card">
+        <div class="tabs">
+          <button class="tab active" data-tab="login">Log in</button>
+          <button class="tab" data-tab="register">Create account</button>
+        </div>
+
+        <form id="form-login" class="auth-form active">
+          <label>Username
+            <input type="text" name="username" required autocomplete="username">
+          </label>
+          <label>Password
+            <input type="password" name="password" required autocomplete="current-password">
+          </label>
+          <button type="submit" class="btn-primary">Log in</button>
+          <p class="form-msg" id="login-msg"></p>
+        </form>
+
+        <form id="form-register" class="auth-form">
+          <label>Username
+            <input type="text" name="username" required minlength="3">
+          </label>
+          <label>Email
+            <input type="email" name="email" required>
+          </label>
+          <label>Password
+            <input type="password" name="password" required minlength="6">
+          </label>
+          <button type="submit" class="btn-primary">Create account</button>
+          <p class="form-msg" id="register-msg"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APP VIEW ===== -->
+  <section id="view-app" class="view">
+    <header class="topbar">
+      <span class="brand-mark small">IRONLOG</span>
+      <nav class="topnav">
+        <button class="navlink active" data-page="dashboard">History</button>
+        <button class="navlink" data-page="new-workout">Log workout</button>
+        <button class="navlink" data-page="exercises">Exercises</button>
+      </nav>
+      <div class="topbar-right">
+        <span id="who" class="who"></span>
+        <button id="logout" class="btn-ghost">Log out</button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- Dashboard / history -->
+      <div id="page-dashboard" class="page active">
+        <div class="page-head">
+          <h1>Your history</h1>
+          <p class="sub">Every session you've logged, most recent first.</p>
+        </div>
+        <div id="workout-list" class="workout-list"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <p>No workouts logged yet.</p>
+          <button class="btn-primary" data-page-link="new-workout">Log your first workout</button>
+        </div>
+      </div>
+
+      <!-- New workout -->
+      <div id="page-new-workout" class="page">
+        <div class="page-head">
+          <h1 id="workout-form-title">Log a workout</h1>
+          <p class="sub">Add exercises, sets, reps, and weight.</p>
+        </div>
+
+        <form id="form-workout" class="workout-form">
+          <input type="hidden" name="workoutId">
+          <div class="field-row">
+            <label>Workout name
+              <input type="text" name="name" placeholder="e.g. Push Day" required>
+            </label>
+            <label>Date
+              <input type="date" name="workoutDate" required>
+            </label>
+          </div>
+          <label>Notes
+            <textarea name="notes" rows="2" placeholder="Optional notes about this session"></textarea>
+          </label>
+
+          <div id="entry-list" class="entry-list"></div>
+
+          <button type="button" id="add-entry" class="btn-ghost">+ Add exercise</button>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Save workout</button>
+            <p class="form-msg" id="workout-msg"></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Exercise library -->
+      <div id="page-exercises" class="page">
+        <div class="page-head">
+          <h1>Exercise library</h1>
+          <p class="sub">Exercises available to add to any workout.</p>
+        </div>
+
+        <form id="form-exercise" class="exercise-form">
+          <input type="text" name="name" placeholder="Exercise name" required>
+          <input type="text" name="muscleGroup" placeholder="Muscle group">
+          <input type="text" name="description" placeholder="Short description">
+          <button type="submit" class="btn-primary">Add</button>
+        </form>
+
+        <div id="exercise-list" class="exercise-list"></div>
+      </div>
+
+    </main>
+  </section>
+
+</div>
+
+<template id="entry-row-template">
+  <div class="entry-row">
+    <select class="entry-exercise" required></select>
+    <input type="number" class="entry-sets" placeholder="Sets" min="1" required>
+    <input type="number" class="entry-reps" placeholder="Reps" min="1" required>
+    <input type="number" class="entry-weight" placeholder="Weight" step="0.5" min="0">
+    <button type="button" class="entry-remove" aria-label="Remove exercise">&times;</button>
+  </div>
+</template>
+
+<script src="js/app.js"></script>
+</body>
+</html>
